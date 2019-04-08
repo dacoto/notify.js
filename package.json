@@ -1,9 +1,9 @@
 {
-    "name": "@dacoto/alerting.js",
-    "version": "0.0.2",
+    "name": "@dacoto/notify.js",
+    "version": "0.0.1",
     "description": "A library to show nice notifications in web applications",
-    "main": "src/js/alerting.js",
-    "repository": "https://github.com/dacoto/alerting.js.git",
+    "main": "src/js/notify.js",
+    "repository": "https://github.com/dacoto/notify.js.git",
     "author": "David Cortés <dacoto97@hotmail.com>",
     "license": "MIT",
     "scripts": {

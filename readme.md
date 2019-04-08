@@ -1,15 +1,15 @@
 <p align="center">
-<img src="alerting.png"  height="100">
+<img src="notify.png"  height="100">
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/@dacoto/alerting.js"><img src="https://img.shields.io/npm/dt/@dacoto/alerting.js.svg" alt="Total Downloads"></a>
-<a href="https://www.npmjs.com/package/@dacoto/alerting.js"><img src="https://img.shields.io/npm/v/@dacoto/alerting.js.svg" alt="Latest Stable Version"></a>
-<a href="https://www.npmjs.com/package/@dacoto/alerting.js"><img src="https://img.shields.io/npm/l/@dacoto/alerting.js.svg" alt="License"></a>
-<a href="https://github.com/dacoto/alerting.js"><img src="https://img.shields.io/github/last-commit/dacoto/alerting.js.svg" alt="Last commit"></a>
+<a href="https://www.npmjs.com/package/@dacoto/notify.js"><img src="https://img.shields.io/npm/dt/@dacoto/notify.js.svg" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/@dacoto/notify.js"><img src="https://img.shields.io/npm/v/@dacoto/notify.js.svg" alt="Latest Stable Version"></a>
+<a href="https://www.npmjs.com/package/@dacoto/notify.js"><img src="https://img.shields.io/npm/l/@dacoto/notify.js.svg" alt="License"></a>
+<a href="https://github.com/dacoto/notify.js"><img src="https://img.shields.io/github/last-commit/dacoto/notify.js.svg" alt="Last commit"></a>
 </p>
 
-<h1 align="center">Alerting.js</h1>
+<h1 align="center">Notify.js</h1>
 
 A library to show nice notifications in web application.
 
@@ -17,10 +17,10 @@ A library to show nice notifications in web application.
 
 ``` cmd
 // npm install
-npm install @dacoto/alerting.js
+npm install @dacoto/notify.js
 
 // yarn install
-npm add @dacoto/alerting.js
+npm add @dacoto/notify.js
 ```
 
 ## Usage
@@ -28,11 +28,11 @@ npm add @dacoto/alerting.js
 ##### Include
 
 ``` cmd
-    import Alerting from '@dacoto/alerting.js';
+    import Notify from '@dacoto/notify.js';
 ```
 or
 ``` cmd
-    <script src="dist/alerting.js"></script>
+    <script src="dist/notify.js"></script>
 ```
 ##### Use in javascript
 

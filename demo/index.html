@@ -4,56 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Alerting.js</title>
-    <link rel="shortcut icon" id="favicon" href="../alerting.png">
-    <style>
-        body {
-
-        }
-    </style>
+    <title>Notify.js</title>
+    <link rel="shortcut icon" id="favicon" href="../notify.png">
 </head>
 <body>
 
-
-
-
-<div class="alerting-notification alerting-notification-info alerting-notification-fade-right alerting-notification-in" style="display: block;">
-    <div class="alerting-notification-dialog" style="">
-        <div class="alerting-notification-content">
-            <div class="alerting-notification-content-inner-info">
-                <div class="alerting-notification-content-inner-info-left">
-                    <i class="fas fa-info-circle" style="font-size: 1em; margin: 0px; background-color: transparent; border-radius: 4px; padding: 0px;"></i>
-                </div>
-                <div class="alerting-notification-content-inner-info-right">
-                    <div class="alerting-notification-content-inner-info-right-close">
-                        <a tabindex="0" class="alerting-btn alerting-btn-sm alerting-btn-subtle">
-                            <div class="alerting-btn-text-fade">
-                                <i class="fas fa-times" style="font-size: 14px; margin: 0px; background-color: transparent; border-radius: 4px; padding: 0px;"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="alerting-notification-content-inner-info-right-title">
-                        Change default MySQL password to something other than 'root'
-                    </div>
-                    <div class="alerting-notification-content-inner-info-right-message">
-                        For security reasons, make sure you change the password of the MySQL user 'root' to something other than 'root' when you publish this application.
-                        <br>
-                        <br>
-                        <br>
-                        <a href="#">Instructions</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <!-- TODO all -->
-<script src="../dist/alerting.js"></script>
+
+<script src="../dist/notify.js"></script>
 <script>
-    new Alerting([], 'success');
+    new Notify({
+        title: 'Change default MySQL password to something other than `root`',
+        message: 'For security reasons, make sure you change the password of the MySQL user `root` to something other than `root` when you publish this application.',
+        link: {
+            linkHref: '#',
+            linkClass: '',
+            linkText: 'Instructions'
+        }
+    }, 'primary');
 </script>
 </body>
 </html>

@@ -1,8 +1,26 @@
-.alerting-icon {
+.notify-icon {
+    width: $icon-size;
     height: $icon-size;
     margin-left: 15px;
-    &.alerting-icon-success {
-        background: url('../img/checked.png') no-repeat;
+
+    @mixin notify-icon-mixin($type) {
+        background: url('../img/#{$type}.png') no-repeat;
         background-size: $icon-size;
+    }
+
+    &.notify-icon-primary {
+        @include notify-icon-mixin('primary');
+    }
+
+    &.notify-icon-success {
+        @include notify-icon-mixin('success');
+    }
+
+    &.notify-icon-warning {
+        @include notify-icon-mixin('warning');
+    }
+
+    &.notify-icon-danger {
+        @include notify-icon-mixin('danger');
     }
 }

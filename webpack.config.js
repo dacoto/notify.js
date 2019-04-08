@@ -2,12 +2,12 @@ var path = require('path');
 
 module.exports = {
     entry: [
-        './src/js/alerting.js',
-        './src/scss/alerting.scss',
+        './src/js/notify.js',
+        './src/scss/notify.scss',
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'alerting.js',
+        filename: 'notify.js',
     },
     module: {
         rules: [
