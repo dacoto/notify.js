@@ -1,0 +1,24 @@
+{
+    "name": "@dacoto/alerting.js",
+    "version": "0.0.1",
+    "description": "A library to show nice notifications in web applications",
+    "main": "src/js/alerting.js",
+    "repository": "https://github.com/dacoto/alerting.js.git",
+    "author": "David Cortés <dacoto97@hotmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "npm run development",
+        "development": "webpack --mode=development",
+        "watch": "npm run development -- --watch",
+        "prod": "npm run production",
+        "production": "webpack --mode=production"
+    },
+    "devDependencies": {
+        "css-loader": "^2.1.1",
+        "node-sass": "^4.11.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.3.0"
+    }
+}
