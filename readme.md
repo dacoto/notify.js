@@ -11,7 +11,7 @@
 
 <h1 align="center">Alerting.js</h1>
 
-A library to obtain the list of time zones.
+A library to show nice notifications in web application.
 
 ## Installation
 
