@@ -1,0 +1,8 @@
+.alerting-icon {
+    height: $icon-size;
+    margin-left: 15px;
+    &.alerting-icon-success {
+        background: url('../img/checked.png') no-repeat;
+        background-size: $icon-size;
+    }
+}

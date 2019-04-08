@@ -1,0 +1,123 @@
+.alerting-notification {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 2000;
+    display: none;
+    overflow: auto;
+    outline: 0;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Arial, Ubuntu, Roboto, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    &-dialog {
+        max-width: 420px;
+        position: relative;
+        width: auto;
+        margin: 20px;
+    }
+
+    &-content {
+        position: relative;
+        background-color: #ffffff;
+        background-clip: padding-box;
+        border-radius: 3px;
+        outline: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    &-fade#{&}-in {
+        opacity: 1 !important;
+    }
+
+    &-fade-right &-content {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    &-fade-right#{&}-in &-content {
+        opacity: 1;
+        transform: translateX(0);
+        box-shadow: rgba(9, 30, 66, 0.08) 0px 1px 2px 0px,
+        rgba(9, 30, 66, 0.08) 0px 2px 4px, rgba(9, 30, 66, 0.31) 0px 3px 20px -5px;
+    }
+
+    &-fade-right#{&}-out &-content {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    @mixin notification-content-inner-mixin($type, $borderColor, $iconColor) {
+        .alerting-notification-content-inner-#{$type} {
+            display: flex;
+            flex-direction: row;
+
+            &-left {
+                flex-basis: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                text-align: center;
+                border-left: 3px solid $borderColor;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+
+                i {
+                    color: $iconColor;
+                }
+            }
+
+            &-right {
+                flex: 1;
+                padding: 20px;
+
+                &-close {
+                    position: absolute;
+                    top: 13px;
+                    right: 13px;
+                }
+
+                &-title {
+                    font-weight: bold;
+                    max-width: 90%;
+                }
+
+                &-message {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+    @mixin notification-content-mixin(
+        $type,
+        $borderSize,
+        $borderColor,
+        $iconColor
+    ) {
+        .alerting-notification-content {
+            border-top: $borderSize solid $borderColor;
+            border-right: $borderSize solid $borderColor;
+            border-bottom: $borderSize solid $borderColor;
+        }
+        @include notification-content-inner-mixin($type, $borderColor, $iconColor);
+    }
+
+    &-warning {
+        @include notification-content-mixin('warning', 1px, #ffc400, #ff8c00);
+    }
+
+    &-danger {
+        @include notification-content-mixin('danger', 1px, #ff542e, #ff542e);
+    }
+
+    &-success {
+        @include notification-content-mixin('success', 1px, #59d9a4, #008558);
+    }
+
+    &-info {
+        @include notification-content-mixin('info', 1px, #4d9aff, #4d9aff);
+    }
+}
