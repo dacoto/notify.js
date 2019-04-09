@@ -4,6 +4,12 @@ $notify-color-primary: #4d9aff;
 $notify-color-success: #59d9a4;
 $notify-color-warning: #ffc400;
 $notify-color-danger: #ff542e;
-// Icon
+// Icon settings
 $notify-icon-size: 20px;
 $notify-icon-path: '../img/';
+$notify-icon-margin: 0 0 0 20px;
+// Icons
+$notify-icon-primary: url($notify-icon-path + 'primary.png');
+$notify-icon-success: url($notify-icon-path + 'success.png');
+$notify-icon-warning: url($notify-icon-path + 'warning.png');
+$notify-icon-danger: url($notify-icon-path + 'danger.png');

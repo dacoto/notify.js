@@ -1,26 +1,26 @@
 .notify-icon {
     width: $notify-icon-size;
     height: $notify-icon-size;
-    margin-left: 15px;
+    margin: $notify-icon-margin;
 
-    @mixin notify-icon-mixin($type) {
-        background: url($notify-icon-path + $type + '.png') no-repeat;
+    @mixin notify-icon-mixin($icon) {
+        background: $icon no-repeat;
         background-size: $notify-icon-size;
     }
 
     &.notify-icon-primary {
-        @include notify-icon-mixin('primary');
+        @include notify-icon-mixin($notify-icon-primary);
     }
 
     &.notify-icon-success {
-        @include notify-icon-mixin('success');
+        @include notify-icon-mixin($notify-icon-success);
     }
 
     &.notify-icon-warning {
-        @include notify-icon-mixin('warning');
+        @include notify-icon-mixin($notify-icon-warning);
     }
 
     &.notify-icon-danger {
-        @include notify-icon-mixin('danger');
+        @include notify-icon-mixin($notify-icon-danger);
     }
 }
