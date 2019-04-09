@@ -7,47 +7,33 @@ class Notify {
      * @param type
      */
     constructor(options = {}, type = 'primary') {
-        // Notify container
-        this._element = document.createElement('div');
-        this._options = options;
-        // Types of alerts
-        let types = ['primary', 'success', 'warning', 'danger'];
-        // Check alert type
-        if (types.includes(type)) {
-            this.make(type);
+        if (typeof options.title !== 'undefined' && typeof options.message !== 'undefined') {
+            // Types of alerts
+            let types = ['primary', 'success', 'warning', 'danger'];
+            // Check alert type
+            if (types.includes(type)) {
+                // Notify container
+                this._element = document.createElement('div');
+                this._type = type;
+                this._options = options;
+                this.make();
+            } else {
+                throw new Error('The notify could not be generated, undefined type');
+            }
         } else {
-            throw new Error('The notify could not be generated, undefined type');
+            throw new Error('The notify could not be generated, title or message not defined');
         }
     }
 
     /**
      * Notify builder
-     * @param type
      */
-    make(type) {
+    make() {
         // Global this
-        var _this = this;
-        // Send other notifications to background
-        let x = document.getElementsByClassName('notify-notification-in');
-        this.numberOfParentModals = x.length;
-        let distanceToMove = 5;
-        if (this.numberOfParentModals > 0) {
-            for (let i = 0; i < this.numberOfParentModals; i++) {
-                let currentMarginTop = x[i].style['top'];
-                if (currentMarginTop && currentMarginTop !== '0px') {
-                    let m = Math.abs(currentMarginTop.slice(0, -2));
-                    let dist = parseInt(m + distanceToMove);
-                    x[i].style['top'] = '-' + dist + 'px';
-                    x[i].style['right'] = '-' + dist + 'px';
-                } else {
-                    x[i].style['top'] = distanceToMove * -1 + 'px';
-                    x[i].style['right'] = distanceToMove * -1 + 'px';
-                }
-            }
-        }
+        let _this = this;
         // If the icon is not configured, we get the default icon for that color
         if (!this._options.icon) {
-            switch (type) {
+            switch (this._type) {
                 case 'primary':
                     this._options.icon = 'notify-icon notify-icon-primary';
                     break;
@@ -66,20 +52,24 @@ class Notify {
         if (!this._options.width) {
             this._options.width = 420;
         }
+        // If the notify auto open is not configured, we enter the default value
+        if (typeof this._options.autoOpen === 'undefined') {
+            this._options.autoOpen = true;
+        }
         // Notify action button
         let notifyActionButton = document.createElement('a');
         if (this._options.link) {
             notifyActionButton.setAttribute("href", this._options.link.linkHref);
-            notifyActionButton.className = this._options.link.linkHref;
+            notifyActionButton.className = this._options.link.linkClass;
             notifyActionButton.innerText = this._options.link.linkText;
         }
         // Notify close button div
         let notifyRightTitle = document.createElement('div');
-        notifyRightTitle.className = 'notify-notification-content-inner-' + type + '-right-title';
+        notifyRightTitle.className = 'notify-notification-content-inner-' + this._type + '-right-title';
         notifyRightTitle.innerText = this._options.title;
         // Notify close button div
         let notifyRightMessage = document.createElement('div');
-        notifyRightMessage.className = 'notify-notification-content-inner-' + type + '-right-message';
+        notifyRightMessage.className = 'notify-notification-content-inner-' + this._type + '-right-message';
         if (this._options.link) {
             notifyRightMessage.innerHTML = this._options.message + '<br><br>';
             notifyRightMessage.append(notifyActionButton);
@@ -94,11 +84,11 @@ class Notify {
             _this.close();
         });
         let notifyCloseButtonDiv = document.createElement('div');
-        notifyCloseButtonDiv.className = 'notify-notification-content-inner-' + type + '-right-close';
+        notifyCloseButtonDiv.className = 'notify-notification-content-inner-' + this._type + '-right-close';
         notifyCloseButtonDiv.append(notifyCloseButton);
         // Notify content right
         let notifyContentRight = document.createElement('div');
-        notifyContentRight.className = 'notify-notification-content-inner-' + type + '-right';
+        notifyContentRight.className = 'notify-notification-content-inner-' + this._type + '-right';
         notifyContentRight.append(notifyCloseButtonDiv);
         notifyContentRight.append(notifyRightTitle);
         notifyContentRight.append(notifyRightMessage);
@@ -107,11 +97,11 @@ class Notify {
         notifyContentLeftIcon.className = this._options.icon;
         // Notify content left
         let notifyContentLeft = document.createElement('div');
-        notifyContentLeft.className = 'notify-notification-content-inner-' + type + '-left';
+        notifyContentLeft.className = 'notify-notification-content-inner-' + this._type + '-left';
         notifyContentLeft.append(notifyContentLeftIcon);
         // Notify content inner
         let notifyDialogInner = document.createElement('div');
-        notifyDialogInner.className = 'notify-notification-content-inner-' + type;
+        notifyDialogInner.className = 'notify-notification-content-inner-' + this._type;
         notifyDialogInner.append(notifyContentLeft);
         notifyDialogInner.append(notifyContentRight);
         // Notify content inner
@@ -124,43 +114,80 @@ class Notify {
         notifyDialog.style.cssText = 'width: ' + this._options.width + 'px;';
         notifyDialog.append(notifyContent);
         // Insert notify in container
-        this._element.className = 'notify-notification notify-notification-' + type + ' notify-notification-fade-right notify-notification-in';
+        this._element.className = 'notify-notification notify-notification-' + this._type + ' notify-notification-fade-right notify-notification-in';
         this._element.style.cssText = 'top: 0px; right: 0px;';
         this._element.append(notifyDialog);
-        this.open();
-    }
-
-    open() {
-        if (this._options.onOpen) {
-            this._options.onOpen();
-        }
+        this._element.style.display = 'none';
         // Append notify to body
         document.body.append(this._element);
+        // If auto open is enabled open notification
+        if (this._options.autoOpen) {
+            this.open();
+        }
     }
 
-    close() {
-        if (this._options.onClose) {
-            this._options.onClose();
-        }
-        // Remove element
-        this._element.parentNode.removeChild(this._element);
-        // Pull other notifications to front
-        let x = document.getElementsByClassName('notify-notification-in');
-        this.numberOfParentModals = x.length;
-        let distanceToMove = -5;
-        if (this.numberOfParentModals > 0) {
-            for (let i = 0; i < this.numberOfParentModals; i++) {
-                let currentMarginTop = x[i].style['top'];
-                if (currentMarginTop && currentMarginTop !== '0px') {
-                    let m = Math.abs(currentMarginTop.slice(0, -2));
-                    let dist = parseInt(m + distanceToMove);
-                    x[i].style['top'] = '-' + dist + 'px';
-                    x[i].style['right'] = '-' + dist + 'px';
-                } else {
-                    x[i].style['top'] = distanceToMove * -1 + 'px';
-                    x[i].style['right'] = distanceToMove * -1 + 'px';
+    /**
+     * Notify open action
+     */
+    open() {
+        if (this._element.style.display === 'none') {
+            if (this._options.onOpen) {
+                this._options.onOpen();
+            }
+            this._element.style.display = 'block';
+            // Send other notifications to background
+            let x = document.getElementsByClassName('notify-notification-in');
+            this.numberOfParentModals = x.length;
+            let distanceToMove = 5;
+            if (this.numberOfParentModals > 0) {
+                for (let i = 0; i < this.numberOfParentModals; i++) {
+                    let currentMarginTop = x[i].style['top'];
+                    if (currentMarginTop && currentMarginTop !== '0px') {
+                        let m = Math.abs(currentMarginTop.slice(0, -2));
+                        let dist = parseInt(m + distanceToMove);
+                        x[i].style['top'] = '-' + dist + 'px';
+                        x[i].style['right'] = '-' + dist + 'px';
+                    } else {
+                        x[i].style['top'] = distanceToMove * -1 + 'px';
+                        x[i].style['right'] = distanceToMove * -1 + 'px';
+                    }
                 }
             }
+        } else {
+            throw new Error('Notification already opened');
+        }
+    }
+
+    /**
+     * Notify close action
+     */
+    close() {
+        if (this._element.style.display === 'block') {
+            if (this._options.onClose) {
+                this._options.onClose();
+            }
+            // Remove element
+            this._element.style.display = 'none';
+            // Pull other notifications to front
+            let x = document.getElementsByClassName('notify-notification-in');
+            this.numberOfParentModals = x.length;
+            let distanceToMove = -5;
+            if (this.numberOfParentModals > 0) {
+                for (let i = 0; i < this.numberOfParentModals; i++) {
+                    let currentMarginTop = x[i].style['top'];
+                    if (currentMarginTop && currentMarginTop !== '0px') {
+                        let m = Math.abs(currentMarginTop.slice(0, -2));
+                        let dist = parseInt(m + distanceToMove);
+                        x[i].style['top'] = '-' + dist + 'px';
+                        x[i].style['right'] = '-' + dist + 'px';
+                    } else {
+                        x[i].style['top'] = distanceToMove * -1 + 'px';
+                        x[i].style['right'] = distanceToMove * -1 + 'px';
+                    }
+                }
+            }
+        } else {
+            throw new Error('Notification already closed');
         }
     }
 }
