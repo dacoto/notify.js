@@ -1,11 +1,11 @@
 .notify-icon {
-    width: $icon-size;
-    height: $icon-size;
+    width: $notify-icon-size;
+    height: $notify-icon-size;
     margin-left: 15px;
 
     @mixin notify-icon-mixin($type) {
-        background: url('../img/#{$type}.png') no-repeat;
-        background-size: $icon-size;
+        background: url($notify-icon-path + $type + '.png') no-repeat;
+        background-size: $notify-icon-size;
     }
 
     &.notify-icon-primary {
