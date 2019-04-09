@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<!-- TODO all -->
+<!-- TODO Documentation and examples -->
 
 <script src="../dist/notify.js"></script>
 <script>
@@ -20,6 +20,12 @@
             linkHref: '#',
             linkClass: '',
             linkText: 'Instructions'
+        },
+        onOpen: function () {
+            console.info('Open notification');
+        },
+        onClose: function () {
+            console.info('Closed notification');
         }
     }, 'primary');
 </script>
