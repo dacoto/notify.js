@@ -1,7 +1,7 @@
-<p style="text-align: center">
+<p align="center">
     <img src="https://cdn.jsdelivr.net/npm/@dacoto/notify.js/notify.png" alt="icon" height="100">
 </p>
-<h1 style="text-align: center">
+<h1 align="center">
     Notify.js
     <br>
     <a href="https://www.npmjs.com/package/@dacoto/notify.js"><img src="https://img.shields.io/npm/dt/@dacoto/notify.js.svg" alt="Total Downloads"></a>
@@ -11,6 +11,8 @@
 </h1>
 
 A library to show nice notifications in web application.
+
+[VIEW DEMO](https://dacoto.github.io/notify.js/index.html)
 
 ## Installation
 
@@ -34,7 +36,7 @@ npm add @dacoto/notify.js
 ``` cmd
     <script src="//cdn.jsdelivr.net/npm/@dacoto/notify.js/dist/notify.min.js"></script>
 ```
-## Notification example:
+## Notification example
 
 ``` cmd
 let options = {
@@ -50,9 +52,9 @@ notification.open();
 notification.close();
 ```
 
-## Notification Params:
+## Notification Params
 
-#### Options:
+#### Options
 
 |Props|Default value|Description|Type|Required|
 |--- |--- |--- |--- |--- |
@@ -66,7 +68,7 @@ notification.close();
 |onOpen| |Callback for the open event|function| |
 |onClose| |Callback for the hide event|function| |
 
-#### Link:
+#### Link
 
 |Props|Note|Type|Required|
 |--- |--- |--- |--- |
@@ -74,7 +76,7 @@ notification.close();
 |linkClass|Link class|string|X|
 |linkText|Link text|string|X|
 
-#### Type:
+#### Type
 
 |Prop|Color|Icon|
 |--- |--- |--- |
