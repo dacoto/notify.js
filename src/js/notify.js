@@ -56,6 +56,10 @@ class Notify {
         if (typeof this._options.autoOpen === 'undefined') {
             this._options.autoOpen = true;
         }
+        // If the notify timeout is not configured, we enter the default value
+        if (!this._options.duration) {
+            this._options.duration = 0;
+        }
         // Notify action button
         let notifyActionButton = document.createElement('a');
         if (this._options.link) {
@@ -152,6 +156,12 @@ class Notify {
                         x[i].style['right'] = distanceToMove * -1 + 'px';
                     }
                 }
+            }
+            // Timeout
+            if (this._options.duration > 0) {
+                setTimeout(() => {
+                    this.close()
+                }, this._options.duration)
             }
         } else {
             throw new Error('Notification already opened');
