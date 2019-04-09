@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notify.js</title>
+    <link rel="shortcut icon" id="favicon" href="//cdn.jsdelivr.net/npm/@dacoto/notify.js/notify.png">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css/github-markdown.min.css">
+    <style>
+        body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        .input > input, textarea, select {
+            width: 100%;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input > input, select {
+            height: 30px;
+        }
+
+        .input > button {
+            background-color: #4d9aff;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+    <script async defer src="//buttons.github.io/buttons.js"></script>
+</head>
+<body class="markdown-body">
+<p style="text-align: center">
+    <img src="//cdn.jsdelivr.net/npm/@dacoto/notify.js/notify.png" alt="icon" height="100">
+</p>
+<h1 style="text-align: center">
+    Notify.js
+    <br>
+    <a href="//www.npmjs.com/package/@dacoto/notify.js"><img src="//img.shields.io/npm/dt/@dacoto/notify.js.svg" alt="Total Downloads"></a>
+    <a href="//www.npmjs.com/package/@dacoto/notify.js"><img src="//img.shields.io/npm/v/@dacoto/notify.js.svg" alt="Latest Stable Version"></a>
+    <a href="//www.npmjs.com/package/@dacoto/notify.js"><img src="//img.shields.io/npm/l/@dacoto/notify.js.svg" alt="License"></a>
+    <a href="//github.com/dacoto/notify.js"><img src="//img.shields.io/github/last-commit/dacoto/notify.js.svg" alt="Last commit"></a>
+</h1>
+<div style="text-align: center">
+    <a
+        class="github-button"
+        target="_blank"
+        href="//github.com/dacoto/notify.js/archive/master.zip"
+        data-icon="octicon-cloud-download"
+        data-size="large"
+        aria-label="Download dacoto/notify.js on GitHub"
+    >
+        Download
+    </a>
+    <a
+        class="github-button"
+        target="_blank"
+        href="//github.com/dacoto/notify.js"
+        data-icon="octicon-star"
+        data-size="large"
+        aria-label="Star dacoto/notify.js on GitHub"
+    >
+        Star
+    </a>
+    <a
+        class="github-button"
+        href="https://github.com/dacoto"
+        data-size="large"
+        aria-label="Follow @dacoto on GitHub"
+    >
+        Follow @dacoto
+    </a>
+</div>
+<h2>Notification generator:</h2>
+<form id="createNotification">
+    <div class="input">
+        <label for="type">Type</label>
+        <select id="type" name="type" required>
+            <option value="primary" selected>Primary (Blue)</option>
+            <option value="success">Success (Green)</option>
+            <option value="warning">Warning (Yellow)</option>
+            <option value="danger">Danger (Red)</option>
+        </select>
+    </div>
+    <div class="input">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" maxlength="100" value="Notification title" required/>
+    </div>
+    <div class="input">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu orci id enim gravida ornare nec eu quam. Quisque sed rutrum mi. Cras id risus quam. Cras ultricies pretium purus, sit amet fringilla dui vehicula ut.</textarea>
+    </div>
+    <div class="input">
+        <button type="submit">Generate alert</button>
+    </div>
+</form>
+<div id="alertCode" style="display: none;">
+    <h2>Notification code:</h2>
+    <pre lang="no-highlight" style="padding-top: 0px; padding-bottom: 0px;">
+        <code id="alertCodeContent"></code>
+    </pre>
+</div>
+<div id="alertLog" style="display: none;">
+    <h2>Notifications events:</h2>
+    <pre id="alertLogContent" lang="no-highlight"></pre>
+</div>
+
+<h2>Notification example:</h2>
+
+<pre lang="no-highlight">
+    let options = {
+        title: 'Notification title',
+        message: 'Notification message',
+        icon: 'fas fa-home',
+    };
+    let type = 'primary';
+
+    var notification = new Notify(options, type);
+
+    notification.open();
+    notification.close();
+</pre>
+
+<h2>Notification Params:</h2>
+
+<h3>Options:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Props</th>
+        <th>Default value</th>
+        <th>Note</th>
+        <th>Type</th>
+        <th>Required</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>title</td>
+        <td></td>
+        <td>Notification title</td>
+        <td>string</td>
+        <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+        <td>message</td>
+        <td></td>
+        <td>Notification body text</td>
+        <td>string</td>
+        <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+        <td>icon</td>
+        <td>notify-icon notify-icon-primary</td>
+        <td>
+            Class of notification icon, similar to this:
+            <br>
+            <code>&lt;i class="<strong>notify-icon notify-icon-primary</strong>"&gt;&lt;/i&gt;</code>
+        </td>
+        <td>string</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>link</td>
+        <td></td>
+        <td>Link at the end of the notification (see link table)</td>
+        <td>array</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>width</td>
+        <td>420</td>
+        <td>Width in pixels of the notification</td>
+        <td>integer</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>duration</td>
+        <td>0</td>
+        <td>The amount of time in milliseconds before closing the notification.</td>
+        <td>integer</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>autoOpen</td>
+        <td>true</td>
+        <td>Open the notification when instantiate it</td>
+        <td>boolean</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>onOpen</td>
+        <td></td>
+        <td>Callback for the open event</td>
+        <td>function</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>onClose</td>
+        <td></td>
+        <td>Callback for the hide event</td>
+        <td>function</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Link:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Props</th>
+        <th>Note</th>
+        <th>Type</th>
+        <th>Required</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>linkHref</td>
+        <td>Link url</td>
+        <td>url</td>
+        <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+        <td>linkClass</td>
+        <td>Link class</td>
+        <td>string</td>
+        <td style="text-align: center">X</td>
+    </tr>
+    <tr>
+        <td>linkText</td>
+        <td>Link text</td>
+        <td>string</td>
+        <td style="text-align: center">X</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Type:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Prop</th>
+        <th>Color</th>
+        <th>Icon</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>primary</td>
+        <td>#4d9aff</td>
+        <td style="text-align: center">
+            <img src="//cdn.jsdelivr.net/npm/@dacoto/notify.js@0.1.0/src/img/primary.png" alt="primary" width="20px" style="padding-top: 6px">
+        </td>
+    </tr>
+    <tr>
+        <td>success</td>
+        <td>#59d9a4</td>
+        <td style="text-align: center">
+            <img src="//cdn.jsdelivr.net/npm/@dacoto/notify.js@0.1.0/src/img/success.png" alt="primary" width="20px" style="padding-top: 6px">
+        </td>
+    </tr>
+    <tr>
+        <td>warning</td>
+        <td>#ffc400</td>
+        <td style="text-align: center">
+            <img src="//cdn.jsdelivr.net/npm/@dacoto/notify.js@0.1.0/src/img/warning.png" alt="primary" width="20px" style="padding-top: 6px">
+        </td>
+    </tr>
+    <tr>
+        <td>danger</td>
+        <td>#ff542e</td>
+        <td style="text-align: center">
+            <img src="//cdn.jsdelivr.net/npm/@dacoto/notify.js@0.1.0/src/img/danger.png" alt="primary" width="20px" style="padding-top: 6px">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Notification Methods:</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>open()</td>
+        <td>Opens the notification</td>
+    </tr>
+    <tr>
+        <td>close()</td>
+        <td>Closes the notification</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="//cdn.jsdelivr.net/npm/@dacoto/notify.js/dist/notify.min.js"></script>
+<script>
+    document.querySelector("#createNotification").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById('alertCode').style.display = 'block';
+        var formData = new FormData(document.querySelector('form'));
+        new Notify({
+            title: formData.get('title'),
+            message: formData.get('message'),
+            onOpen: function () {
+                printLog('Create notification');
+            },
+            onClose: function () {
+                printLog('Close notification');
+            }
+        }, formData.get('type'));
+        document.getElementById('alertCodeContent').innerHTML = '' +
+            '<br>new Notify({' +
+            '<br>      title: "' + formData.get('title') + '"' +
+            '<br>      message: "' + formData.get('message') + '"' +
+            '<br>}, "' + formData.get('type') + '");';
+
+    });
+
+    function printLog(log) {
+        document.getElementById('alertLog').style.display = 'block';
+        document.getElementById('alertLogContent').innerHTML = 'Event: ' + log + '<br>' + document.getElementById('alertLogContent').innerHTML;
+    }
+</script>
+</body>
+</html>
