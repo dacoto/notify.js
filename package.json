@@ -1,6 +1,6 @@
 {
     "name": "@dacoto/notify.js",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A library to show nice notifications in web applications",
     "main": "src/js/notify.js",
     "repository": "https://github.com/dacoto/notify.js.git",
