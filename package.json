@@ -1,10 +1,10 @@
 {
     "name": "@dacoto/notify.js",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "A library to show nice notifications in web applications",
     "main": "src/js/notify.js",
     "repository": "https://github.com/dacoto/notify.js.git",
-    "author": "David Cortés <dacoto97@hotmail.com>",
+    "author": "David Cortés <cortestoledanodavid@gmail.com>",
     "license": "MIT",
     "scripts": {
         "dev": "npm run development",
@@ -14,19 +14,19 @@
         "production": "webpack --mode=production"
     },
     "devDependencies": {
-        "@babel/cli": "^7.6.2",
-        "@babel/core": "^7.6.2",
-        "@babel/node": "^7.6.2",
-        "@babel/preset-env": "^7.6.2",
-        "@babel/preset-react": "^7.0.0",
-        "@babel/register": "^7.6.2",
-        "babel-loader": "^8.0.6",
-        "css-loader": "^3.2.0",
-        "node-sass": "^4.12.0",
-        "sass-loader": "^8.0.0",
-        "style-loader": "^1.0.0",
-        "url-loader": "^4.0.0",
-        "webpack": "^4.41.0",
-        "webpack-cli": "^3.3.9"
+        "@babel/cli": "^7.10.1",
+        "@babel/core": "^7.10.1",
+        "@babel/node": "^7.10.1",
+        "@babel/preset-env": "^7.10.1",
+        "@babel/preset-react": "^7.10.1",
+        "@babel/register": "^7.10.1",
+        "babel-loader": "^8.1.0",
+        "css-loader": "^3.5.3",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.2.1",
+        "url-loader": "^4.1.0",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11"
     }
 }
