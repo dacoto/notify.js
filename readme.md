@@ -12,7 +12,7 @@
 
 A library to show nice notifications in web application.
 
-[VIEW DEMO](https://notifyjs.dacoto.dev/)
+[VIEW DEMO](https://notifyjs.dev.dacoto.com/)
 
 ## Installation
 
