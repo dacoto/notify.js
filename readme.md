@@ -12,7 +12,7 @@
 
 A library to show nice notifications in web application.
 
-[VIEW DEMO](https://notify-js.vercel.app/)
+[VIEW DEMO](https://dacoto.github.io/notify.js/)
 
 ## Installation
 
